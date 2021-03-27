@@ -37,6 +37,7 @@
 %My added packages
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{hyperref}
 
 \allsectionsfont{\normalfont\scshape} % Make all section titles in default font and small caps.
 
@@ -2381,6 +2382,21 @@ Solve:
 	Caesar 1: WOW I LEARNED SCALA I THINK
 	Caesar 0: VNV H KDZQMDC RBZKZ H SGHMJ
 	    \end{lstlisting}
+	    
+	\section{Main Google Searches}
+    	\subsection{Fortran}
+    	    \url{https://www.tutorialspoint.com/fortran/index.htm}\\
+    	    \url{https://www.youtube.com/watch?v=__2UgFNYgf8}
+    	\subsection{COBOL}
+    	    \url{https://www.tutorialspoint.com/cobol/index.htm}\\
+    	    \url{https://www.youtube.com/watch?v=TBs7HXI76yU}
+    	\subsection{BASIC}
+    	    \url{https://www.tutorialspoint.com/vb.net/index.htm}\\
+    	    \url{https://docs.microsoft.com/en-us/dotnet/visual-basic/}
+    	\subsection{Pascal}
+    	    \url{https://www.tutorialspoint.com/pascal/index.htm}
+        \subsection{Scala}
+    	    \url{https://www.tutorialspoint.com/scala/index.htm}
 	\section{Language Rankings}
 	1. Visual BASIC\\
 	2. Scala\\
