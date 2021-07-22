@@ -73,37 +73,36 @@ Module Test
 	End Function
 	
 	Sub Main()
-		' your code goes here
 		Console.WriteLine("Caesar Cipher" & vbLf)
 		DIM testStr1 as string = "IBM"
-    	DIM testStr2 as string = "Hello World"
-    	DIM testStr3 as string = "This is a test"
-    	DIM testStr4 as string = "Hi my name is Robbie"
-    	DIM testStr5 as string = "WandaVision"
-    	DIM testStr6 as string = "Abed"
-    	DIM testStr7 as string = "The Mandalorian"
-    	DIM testStr8 as string = "Wow I learned BASIC I think"
-    	
-    	DIM shiftAmount as integer = -1
-    	DIM maxShiftAmount as integer = 26
-    	
-    	DIM testStrArr = New String() {testStr1, testStr2, testStr3, testStr4, testStr5, testStr6, testStr7, testStr8}
-    	
-    	DIM i as integer
-    	for i = 0 to (testStrArr.length - 1)
-    		'Console.WriteLine(testStrArr(i))
-    		DIM tempStr as string = UCase(testStrArr(i))
-    		Console.WriteLine("Original String: " + tempStr)
-    		
-    		DIM encryptedTempStr as string = encrypt(tempStr, shiftAmount)
-    		Console.WriteLine("Encrypted String: " + encryptedTempStr)
-    		
-    		DIM decryptedTempStr as string = decrypt(encryptedTempStr, shiftAmount)
-    		Console.WriteLine("Decrypted String: " + decryptedTempStr)
-    		
-    		Console.WriteLine("Solve: ")
-    		solve(encryptedTempStr, maxShiftAmount)
-    		Console.WriteLine()
-    	next
+		DIM testStr2 as string = "Hello World"
+		DIM testStr3 as string = "This is a test"
+		DIM testStr4 as string = "Hi my name is Robbie"
+		DIM testStr5 as string = "WandaVision"
+		DIM testStr6 as string = "Abed"
+		DIM testStr7 as string = "The Mandalorian"
+		DIM testStr8 as string = "Wow I learned BASIC I think"
+
+		DIM shiftAmount as integer = -1
+		DIM maxShiftAmount as integer = 26
+
+		DIM testStrArr = New String() {testStr1, testStr2, testStr3, testStr4, testStr5, testStr6, testStr7, testStr8}
+
+		DIM i as integer
+		for i = 0 to (testStrArr.length - 1)
+			'Console.WriteLine(testStrArr(i))
+			DIM tempStr as string = UCase(testStrArr(i))
+			Console.WriteLine("Original String: " + tempStr)
+
+			DIM encryptedTempStr as string = encrypt(tempStr, shiftAmount)
+			Console.WriteLine("Encrypted String: " + encryptedTempStr)
+
+			DIM decryptedTempStr as string = decrypt(encryptedTempStr, shiftAmount)
+			Console.WriteLine("Decrypted String: " + decryptedTempStr)
+
+			Console.WriteLine("Solve: ")
+			solve(encryptedTempStr, maxShiftAmount)
+			Console.WriteLine()
+		next
 	End Sub
 End Module
