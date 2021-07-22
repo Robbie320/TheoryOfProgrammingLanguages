@@ -1,0 +1,461 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% CMPT 331
+% Spring 2021
+% Fun with Lambda Calculus
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from: http://www.LaTeXTemplates.com
+% Original author: % Frits Wenneker (http://www.howtotex.com)
+% License: CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+% Modified by Alan G. Labouseur  - alan@labouseur.com
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[letterpaper, 10pt,DIV=13]{scrartcl} 
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm,xfrac} % Math packages
+\usepackage{sectsty} % Allows customizing section commands
+\usepackage{graphicx}
+\usepackage[lined,linesnumbered,commentsnumbered]{algorithm2e}
+\usepackage{listings}
+\usepackage{parskip}
+\usepackage{lastpage}
+
+%-----------------------------------------------------
+%   My added packages
+%-----------------------------------------------------
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+%\usepackage{tabto}
+%\usepackage{sectsty} % http://ctan.org/pkg/sectsty
+%\usepackage{titlecaps} % http://ctan.org/pkg/titlecaps
+
+\allsectionsfont{\normalfont\scshape} % Make all section titles in default font and small caps.
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{page \thepage\ of \pageref{LastPage}} % Page numbering for right footer
+
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+
+%-------------- My added renewcommand --------------
+\renewcommand{\thesubsection}{\alph{subsection}} % Make subsections alphabetical rather than numerical. Ex: 2.1 is just A now
+%---------------------------------------------------
+
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs.
+
+\binoppenalty=3000
+\relpenalty=3000
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+   \normalfont \normalsize 
+   \textsc{CMPT 331 - Spring 2021 - Dr. Labouseur} \\[10pt] % Header stuff.
+   \horrule{0.5pt} \\[0.25cm] 	% Top horizontal rule
+   \huge Fun with Lambda Calculus   \\  % Assignment title
+   \horrule{0.5pt} \\[0.25cm] 	% Bottom horizontal rule
+}
+
+\author{Robert Perrone \\ \normalsize robert.perrone1@marist.edu}
+
+\date{\normalsize\today} 	% Today's date.
+
+
+\begin{document}
+    \maketitle % Print the title
+
+%-------------------------------------------------------------------------------------------
+%   Question 1 : Beta-reduce the following expressions to their normal form:
+%-------------------------------------------------------------------------------------------
+\section{Beta-reduce	the	following	expressions	to	their	normal	form:}
+    %---------------------------------------
+    %   1A) (lambda a lambda y . y a) (z z)
+    %---------------------------------------
+    \subsection{\texorpdfstring{($\lambda a$ $\lambda y$ . $y$ $a$) ($z$ $z$)} {(lambda a lambda y . y a) (z z)}}
+        \hspace{5mm}
+        $[(z$ $z$)/$a]$ in $\lambda y$ . $y$ $a$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ $\lambda y$ . $y$ ($z$ $z$)
+        
+\vspace{-3mm}
+    %-----------------------------------------------
+    %   1B) (lambda x lambda y . (x y))(lambda z.y)
+    %-----------------------------------------------
+    \subsection{\texorpdfstring{($\lambda x$ $\lambda y$ . ($x$ $y$)) ($\lambda z.y$)} {(lambda x lambda y . (x y))(lambda z.y)}}
+        \hspace{5mm}
+        ($\lambda x$ $\lambda y$ . ($x$ $y$)) ($\lambda z$ $y$) \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\alpha}{=}$ ($\lambda x$ $\lambda a$ . ($x$ $a$)) ($\lambda z$ $y$)\\
+    
+    \vspace{-3mm}
+        \hspace{5mm}
+        $[(\lambda z$ $y$)/$x]$ in $\lambda a$ . ($x$ $a$)\\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ $\lambda a$ . (($\lambda z$ $y$) $a$) \\
+    
+    \vspace{-3mm}
+        \hspace{5mm}
+        $[a$/$z]$ in $y$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ $\lambda a$ . $y$
+
+\vspace{-3mm}
+    %----------------------------------------------
+    %   1C) (lambda x . (x x)) (lambda y . (y y))
+    %----------------------------------------------
+    \subsection{\texorpdfstring{($\lambda x$ . ($x$ $x$)) ($\lambda y$ . ($y$ $y$))} {(lambda x . (x x)) (lambda y . (y y))}}
+        \hspace{5mm}
+        $[(\lambda y$ . ($y$ $y))$/$x]$ in ($x$ $x$) \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ ($\lambda y$ . ($y$ $y$)) ($\lambda y$ . ($y$ $y$)) \\
+    
+    \vspace{-3mm}
+        \hspace{5mm}
+        $\underset{\alpha}{=}$ ($\lambda y$ . ($y$ $y$)) ($\lambda a$ . ($a$ $a$)) \\
+    
+    \vspace{-3mm}
+        \hspace{5mm}
+        $[(\lambda a$ . ($a$ $a$))/$y]$ in ($y$ $y$) \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ ($\lambda a$ . ($a$ $a$)) ($\lambda a$ . ($a$ $a$)) \hspace{5mm}//Never ending!
+        
+\vspace{-3mm}
+\newpage
+    %--------------
+    %   1D) K x y
+    %--------------
+    \subsection{\texorpdfstring{$K$ $x$ $y$} {K x y}}
+        \hspace{5mm}
+        ($\lambda xy$ . $x$) $x$ $y$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\alpha}{=}$ ($\lambda az$ . $a$) \\
+        
+    \vspace{-3mm}
+        \hspace{5mm}
+        $[x$/$a]$ in ($\lambda z$ . $a$) \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ ($\lambda z$ . $x$) $y$ \\
+    
+    \vspace{-3mm}
+        \hspace{5mm}
+        $[y$/$z]$ in x \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ $x$
+
+\vspace{-3mm}
+    %-----------
+    %   1E) S K
+    %-----------
+    \subsection{\texorpdfstring{$S$ $K$} {S K}}  
+        \hspace{5mm}
+        ($\lambda epz$ . $ez(pz)$) K \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $[K$/$e]$ in $\lambda pz$ . $ez(pz)$\\
+    
+    \vspace{-5mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ $\lambda pz$ . $Kz(pz)$ \\
+    
+    \vspace{-4mm}
+        \hspace{5mm}
+        $\lambda pz$ . ($\lambda xy$ . $x$) $z$ ($pz$) \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $[z$/$x]$ in $\lambda pz$ . ($\lambda y$ . $x$) \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ $\lambda pz$ . ($\lambda y$ . $z$) ($pz$) \\
+        
+    \vspace{-3mm}
+        \hspace{5mm}
+        $[(pz)$/$y]$ in $\lambda pz$ . $z$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ $\lambda pz$ . $z$
+        
+\vspace{-3mm}
+    %-------------------
+    %   1F) (S K) y y z
+    %-------------------
+    \subsection{\texorpdfstring{($S$ $K$) $y$ $y$ $z$} {(S K) y y z}}
+        \hspace{5mm}
+        ($\lambda pz$ . $z$) $y$ $y$ $z$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\alpha}{=}$ ($\lambda px$ . $x$) $y$ $y$ $z$ \\
+    
+    \vspace{-3mm}
+        \hspace{5mm}
+        $[y$/$p]$ in ($\lambda x$ . $x$) $yz$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ ($\lambda x$ . $x$) $yz$ \\
+    
+    \vspace{-4mm}
+        \hspace{5mm}
+        $[y$/$x]$ in ($x$) $z$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ ($y$) $z$
+    
+\vspace{-3mm}
+    %-----------------
+    %   1G) K' y y z
+    %-----------------
+    \subsection{\texorpdfstring{$K'$ $y$ $y$ $z$} {K' y y z}}
+        \hspace{5mm}
+        ($\lambda xy$ . $y$) $y$ $y$ $z$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\alpha}{=}$ ($\lambda xa$ . $a$) $y$ $y$ $z$ \\
+    
+    \vspace{-3mm}
+        \hspace{5mm}
+        $[y$/$x]$ in ($\lambda a$ . $a$) $yz$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ ($\lambda a$ . $a$) $y$ $z$ \\
+    
+    \vspace{-3mm}
+        \hspace{5mm}
+        $[y$/$a]$ in ($a$) $z$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ ($y$) $z$
+        
+\vspace{-3mm}
+\newpage
+%-------------------------------------------------------------------------------------------
+%   Question 2 : What is the normal form of S (K S) (K I)?
+%-------------------------------------------------------------------------------------------
+\section{What is the normal form of S (K S) (K I)?}
+        \hspace{5mm}
+        ($\lambda epz$ . $ez$ ($pz$)) ($KS$) ($KI$) \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $[(KS)$/$e]$ in ($\lambda pz$ . $ez$ ($pz$)) ($KI$) \\
+    
+    \vspace{-4mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ ($\lambda pz$ . $(KS)z$ ($pz$)) ($KI$) \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $[(KI)$/$p]$ in $\lambda z$ . $(KS)z(pz)$ \\
+    
+    \vspace{-4mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ $\lambda z$ . $(KS) z ((KI)z)$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\lambda z$ . $((\lambda xy$ . $x)S)z((KI)z)$ \\
+    
+    \vspace{-4mm}
+        \hspace{5mm}
+        $[S$/$x]$ in $\lambda z$ . $(\lambda y$ . $x)z((KI)z)$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ $\lambda z$ . $(\lambda y$ . $S)z((KI)z)$ \\
+    
+    \vspace{-4mm}
+        \hspace{5mm}
+        $[z$/$y]$ in $\lambda z$ . $(S)((KI)z)$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ $\lambda z$ . $(S)((KI)z)$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\lambda z$ . $(\lambda epz$ . $ez(pz))((KI)z)$ \\
+    
+    \vspace{-4mm}
+        \hspace{5mm}
+        $[((KI)z)$/$e]$ in $\lambda z$ . $(\lambda pz$ . $ez(pz))$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ $\lambda z$ . $(\lambda pz$ . $((KI)z)z(pz))$ \\
+    
+    \vspace{-4mm}
+        \hspace{5mm}
+        $[z$/$p]$ in $\lambda z$ . $(\lambda z$ . $((KI)z)z(pz))$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ $\lambda z$ . $(\lambda z$ . $((KI)z)(pz))$ \\
+    
+    \vspace{-4mm}
+        \hspace{5mm}
+        $[(pz)$/$z]$ in $\lambda z$ . $((KI)z)$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ $\lambda z$ . $((KI)(pz))$ \\
+    
+    \vspace{-4mm}
+        \hspace{5mm}
+        $\lambda z$ . $(((\lambda xy$ . $x)I)(pz))$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $[I$/$x]$ in $\lambda z$ . $((\lambda y$ . $x)(pz))$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ $\lambda z$ . $((\lambda y$ . $I)(pz))$ \\
+    
+    \vspace{-3mm}
+        \hspace{5mm}
+        $[(pz)$/$y]$ in $\lambda z$ . $(I)$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ $\lambda z$ . $I$ \\
+    
+    \vspace{-4mm}
+        \hspace{5mm}
+        $\lambda z$ . $(\lambda x$ . $x)$
+        
+\vspace{-3mm}
+\newpage
+%-------------------------------------------------------------------------------------------
+%   Question 3 : Prove the following equivalencies by reducing each side to its normal form.
+%-------------------------------------------------------------------------------------------
+\section{Prove the following equivalencies by reducing each side to its normal form.}
+    %-----------------
+    %   3A) I = S K K
+    %-----------------
+    \subsection{\texorpdfstring{$I$ $=$ $S$ $K$ $K$}{I = S K K}}
+        \hspace{5mm}
+        $\lambda x$ . $x$ $=$ $(\lambda epz$ . $ez(pz))K K$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\lambda x$ . $x$ $=$ $[K$/$e]$ in $(\lambda pz$ . $ez(pz))K$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\lambda x$ . $x$ $=$ $\underset{\beta}{\rightarrow}$ $(\lambda pz$ . $Kz(pz))K$ \\
+        
+    \vspace{-4mm}
+        \hspace{5mm}
+        $\lambda x$ . $x$ $=$ $[K$/$p]$ in $(\lambda z$ . $Kz(pz))$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\lambda x$ . $x$ $=$ $\underset{\beta}{\rightarrow}$ $\lambda z$ . $Kz(Kz)$ \\
+    
+    \vspace{-4mm}
+        \hspace{5mm}
+        $\lambda x$ . $x$ $=$ $\lambda z$ . $(\lambda xy$ . $x)z(Kz)$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\lambda x$ . $x$ $=$ $[z$/$x]$ in $\lambda z$ . $(\lambda y$ . $x)(Kz)$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\lambda x$ . $x$ $=$ $\underset{\beta}{\rightarrow}$ $\lambda z$ . $(\lambda y$ . $z)(Kz)$ \\
+    
+    \vspace{-4mm}
+        \hspace{5mm}
+        $\lambda x$ . $x$ $=$ $[(Kz)$/$y]$ in $\lambda z$ . $(z)$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\lambda x$ . $x$ $=$ $\underset{\beta}{\rightarrow}$ $\lambda z$ . $z$ $\underset{\alpha}{=}$ $\lambda x$ . $x$ \\
+        
+    \vspace{-4mm}
+        \hspace{5mm}
+        $\lambda x$ . $x$ $=$ $\lambda x$ . $x$
+        
+\vspace{-3mm}
+    %---------------------
+    %   3B) S K K = I K K
+    %---------------------
+    \subsection{\texorpdfstring{$S$ $K$ $K$ = $K$ $I$ $I$}{S K K = I K K}}
+        \hspace{5mm}
+        $\lambda x$ . $x$ $=$ $(\lambda xy$ . $x) I$ $I$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\lambda x$ . $x$ $=$ $[I$/$x]$ $(\lambda y$ . $x)I$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\lambda x$ . $x$ $=$ $\underset{\beta}{\rightarrow}$ $(\lambda y$ . $I)I$ \\
+    
+    \vspace{-4mm}
+        \hspace{5mm}
+        $\lambda x$ . $x$ $=$ $[I$/$y]$ $I$ \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\lambda x$ . $x$ $=$ $\underset{\beta}{\rightarrow}$ $I$ \\
+    
+    \vspace{-4mm}
+        \hspace{5mm}
+        $\lambda x$ . $x$ $=$ $\lambda x$ . $x$
+        
+\vspace{-3mm}
+\newpage
+%-------------------------------------------------------------------------------------------
+%   Question 4 : Given the definition of Church numerals below, what does (m n) do when m and n are Church numerals? For example (\bar{2} \bar{3}). It may be easier to work out as lambda m lambda n . (m n). Show your work (or at least an example).
+%-------------------------------------------------------------------------------------------
+    \section{Given the definition of Church numerals below, what does ($m$ $n$) do when $m$ and $n$ are Church numerals? For example \texorpdfstring{($\bar{2}$ $\bar{3})$}{2 3}. It may be easier to work out as \texorpdfstring{$\lambda{m}$ $\lambda{n}$ . ($m$ $n$)} {lambda m lambda n.(m n)}. Show your work (or at least an example).}
+        \hspace{5mm}
+        $\lambda m$ $n$ . ($m$ $n$)\\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\lambda m$ $n$ . ($\overline{2}$ $\overline{3}$) \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\lambda m$ $n$ . ($\lambda f$ $x$ . ($f$($fx$)) $\overline{3}$) \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\lambda m$ $n$ . ($\lambda f$ $x$ . ($f$($fx$)) $\overline{3}$) \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $[\overline{3}$/$f]$ in $\lambda m$ $n$ . ($\lambda f$ $x$ . ($f$($fx$))) \\
+    \vspace{-1mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ $\lambda m$ $n$ . ($\lambda x$ . ($\overline{3}$($\overline{3}x$))) \\
+    
+    \vspace{-4mm}
+        \hspace{5mm}
+        $\lambda m$ $n$ . ($\lambda x$ . ($\lambda fy$ . $(f(f(fy)))$ ($\overline{3}x$))) \\
+    
+    \vspace{-4mm}
+        \hspace{5mm}
+        $[\overline{3}x$/$f]$ in $\lambda m$ $n$ . ( $\lambda x$ . ($\lambda y$ . $(f(f(fy)))$)) \\
+    \vspace{-4mm}
+        \hspace{5mm}
+        $\underset{\beta}{\rightarrow}$ $\lambda m$ $n$ . ( $\lambda x$ . ($\lambda y$ . $(\overline{3}x(\overline{3}x((\overline{3}x)y))$)) \\
+
+Church numerals have not been my strongest area in this assignment. I still do not fully understand it, but I hope I was able to get somewhere with the reductions. I did not reduce farther because I saw the pattern arising that it was going to go one for a while and I could not for-see the end of the reductions. It looked like it would just keep growing the more I went along with the beta reductions.
+
+\vspace{-3mm}
+\end{document}
