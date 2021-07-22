@@ -1,5 +1,6 @@
 object Main {
     def main(args: Array[String]) {
+    	//Procedural
         println("Caesar Cipher\n")
         val testStr1 = "IBM"
     	val testStr2 = "Hello World"
@@ -9,32 +10,32 @@ object Main {
     	val testStr6 = "Abed"
     	val testStr7 = "The Mandalorian"
     	val testStr8 = "Wow I learned Scala I think"
-    	
+ 
     	val shiftAmount = -1
-	    val maxShiftAmount = 26
-	    
-	    var testStrArr = Array(testStr1, testStr2, testStr3, testStr4, testStr5, testStr6, testStr7, testStr8)
-	    
-	    for(i <- testStrArr) {
-	        var tempStr = i.toUpperCase()
-	        println("Original String: " + tempStr)
-	        
-	        var encryptedTempStr = encrypt(tempStr, shiftAmount)
-	        println("Encrypted String: " + encryptedTempStr)
-	        
-	        var decryptedTempStr = decrypt(encryptedTempStr, shiftAmount)
-	    	println("Decrypted String: " + decryptedTempStr)
-	        
-	        println("Solve: ")
-	        solve(encryptedTempStr, maxShiftAmount)
-	        println()
-	    }
+	val maxShiftAmount = 26
+
+	var testStrArr = Array(testStr1, testStr2, testStr3, testStr4, testStr5, testStr6, testStr7, testStr8)
+
+	for(i <- testStrArr) {
+	var tempStr = i.toUpperCase()
+	println("Original String: " + tempStr)
+
+	var encryptedTempStr = encrypt(tempStr, shiftAmount)
+	println("Encrypted String: " + encryptedTempStr)
+
+	var decryptedTempStr = decrypt(encryptedTempStr, shiftAmount)
+	println("Decrypted String: " + decryptedTempStr)
+
+	println("Solve: ")
+	solve(encryptedTempStr, maxShiftAmount)
+	println()
+	}
     }
     def encrypt(testStr:String, shift:Int) : String /*Array[Char]*/= {
         //var encryptedStr = ""
         var encryptedChrArr = testStr.toCharArray()
         var e = 0
-        
+ 
         for(e <- 0 until testStr.length()) {
             var letter = encryptedChrArr(e) //testStr.charAt(e)
             //println(letter) //check letters
@@ -62,7 +63,7 @@ object Main {
     def decrypt(testStr:String, shift:Int) : String = {
         var decryptedChrArr = testStr.toCharArray()
         var d = 0
-        
+ 
         for(d <- 0 until testStr.length()) {
             var letter = decryptedChrArr(d)
             //shift = -shift//Switch sign of shift
@@ -91,7 +92,7 @@ object Main {
         val shift = -1
         var j = 0
         var s = 0
-        
+ 
         println("\tCaesar " + (26).toString + ": " + testStr)
         for(j <- 0 until maxShift) {
 	        for(s <- 0 until testStr.length()) {
@@ -112,8 +113,8 @@ object Main {
 	                //println(letter)
 	            }
 	        }
-	        var solvedStr = solvedChrArr.mkString("")
-	        println("\tCaesar " + (maxShift-j-1).toString + ": " + solvedStr)
+		var solvedStr = solvedChrArr.mkString("")
+		println("\tCaesar " + (maxShift-j-1).toString + ": " + solvedStr)
     	}
     }
 }
